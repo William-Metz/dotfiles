@@ -26,12 +26,16 @@ foreground = "0xdadada"
 size = 12.0
 
 [font.bold]
-family = "FiraMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.normal]
-family = "FiraMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Medium"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+
 
 [selection]
 save_to_clipboard = true
