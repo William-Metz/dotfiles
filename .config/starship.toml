@@ -1,0 +1,5 @@
+
+# Define custom prompt format (if prompt_order is not supported, modules will default to an internal order)
+# Format customization might need to be done module by module
+
+

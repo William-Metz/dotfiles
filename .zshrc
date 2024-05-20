@@ -101,4 +101,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-alias condanav='anaconda-navigator'
+alias conda='anaconda-navigator'
+alias vim='nvim'
+eval "$(zoxide init --cmd cd zsh)"

@@ -1,0 +1,100 @@
+:q
+exit
+f 1
+y = 4
+f x y = x + y
+f 5
+f x =  x + 4
+f x + 4
+f x = x + y 
+f x = x +y
+main
+:l week11.hs 
+parse "((a,a),a,(a,a))"
+:l week11.hs 
+parse "((a,a),a,(a,a))"
+parse parse "((a,a),a,(a,a))"\
+main = runTests
+main :: IO ()
+  testParseComplex
+  testParseTupleComplex
+  testParseExpTailComplex
+  testParseExpComplex
+  testParseExpSimpleTuple
+  testParseExpA
+runTests = do
+runTests :: IO ()
+-- Function to run all tests
+  in putStrLn $ "Test parse with complex input: Expected " ++ show expected ++ ", got " ++ show result ++ ",res:" ++ boolToString res
+      res = result == expected
+      result = parse input
+      expected = Just (AST_Tuple [AST_Tuple [A, AST_Tuple [A, AST_Tuple [A]]], A])
+  let input = "((a,(a,(a))),a)"
+testParseComplex =
+testParseComplex :: IO ()
+-- Test case for parse with a complex nested tuple
+  in putStrLn $ "Test parseTuple with complex tuple: Expected " ++ show expected ++ ", got " ++ show result ++ ",res:" ++ boolToString res
+      res = result == expected
+      result = parseTuple input
+      expected = Just ([AST_Tuple [A, AST_Tuple [A, AST_Tuple [A]], A]], [EOF])
+  let input = [LParen, AToken, Comma, LParen, AToken, Comma, LParen, AToken, RParen, RParen, Comma, AToken, RParen, EOF]
+testParseTupleComplex =
+testParseTupleComplex :: IO ()
+-- Test case for parseTuple with a complex nested tuple
+  in putStrLn $ "Test parseExpTail with complex tuple: Expected " ++ show expected ++ ", got " ++ show result ++ ",res:" ++ boolToString res
+      res = result == expected
+      result = parseExpTail input
+      expected = Just ([AST_Tuple [A, AST_Tuple [A, AST_Tuple [A]], A]], [EOF])
+  let input = ([], [LParen, AToken, Comma, LParen, AToken, Comma, LParen, AToken, RParen, RParen, Comma, AToken, RParen, EOF])
+testParseExpTailComplex =
+testParseExpTailComplex :: IO ()
+-- Test case for parseExpTail with a complex nested tuple
+  in putStrLn $ "Test parseExp with complex tuple: Expected " ++ show expected ++ ", got " ++ show result ++ ",res:" ++ boolToString res
+      res = result == expected
+      result = parseExp input
+      expected = Just (AST_Tuple [A, AST_Tuple [A, A]], [EOF])
+  let input = [LParen, AToken, Comma, LParen, AToken, Comma, AToken, RParen, RParen, EOF]
+testParseExpComplex =
+testParseExpComplex :: IO ()
+-- Test case for parseExp with a complex nested tuple
+  in putStrLn $ "Test parseExp with simple tuple: Expected " ++ show expected ++ ", got " ++ show result ++ ",res:" ++ boolToString res
+      res = result == expected
+      result = parseExp input
+      expected = Just (AST_Tuple [A, A], [EOF])
+  let input = [LParen, AToken, Comma, AToken, RParen, EOF]
+testParseExpSimpleTuple =
+testParseExpSimpleTuple :: IO ()
+-- Test case for parseExp with a simple tuple
+  in putStrLn $ "Test parseExp with 'A': Expected " ++ show expected ++ ", got " ++ show result ++ ",res:" ++ boolToString res
+      res = result == expected
+      result = parseExp input
+      expected = Just (A, [EOF])
+  let input = [AToken, EOF]
+testParseExpA =
+testParseExpA :: IO ()
+boolToString False = "False"
+boolToString True  = "True"
+boolToString :: Bool -> String
+        _ -> Nothing
+        Just ((_, tokens)) -> Nothing
+        Just ((exps, [EOF])) -> Just ((head exps))
+    case parseTuple (getTokens input) of
+parse input =
+parse :: String -> Maybe (Exp)
+-- The top-level function to parse a string into an Exp
+        _ -> Nothing
+        (exp, unexpectedTokens) -> Nothing
+        (exp, [EOF]) -> Just ((reverse (exp:exps), [EOF]))
+        (exp, restTokens@(Comma:_)) -> parseExpTail (exp:exps, restTokens)
+        (exp, restTokens@(RParen:_)) -> parseExpTail (exp:exps, restTokens)
+    case result of
+    result <- parseExp tokens
+parseExpTail (exps, tokens) = do
+        _ -> Nothing
+        (exp, restTokens) -> parseExpTail (exp:exps, restTokens)
+    case result of
+    result <- parseExp tokens
+parseExpTail (exps, Comma:tokens) = do
+parseExpTail (exps, RParen:tokens) = Just ((reverse exps, RParen:tokens))
+parseExpTail :: ([Exp], [Tokens]) -> Maybe (([Exp], [Tokens]))
+-- Helper function to parse the tail part of a tuple
