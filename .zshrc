@@ -51,7 +51,7 @@ export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="/opt/homebrew/anaconda3/bin:$PATH"
 
 #aliases 
-alias conda='anaconda-navigator'
+#alias conda='anaconda-navigator'
 alias vim='nvim'
 alias ls='ls --color'
 
@@ -90,3 +90,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+
+# Created by `pipx` on 2024-09-10 06:26:51
+export PATH="$PATH:/Users/will/.local/bin"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"

@@ -73,12 +73,25 @@ opts = {
         "text",
     },
 }
-use({
-        "andrewferrier/wrapping.nvim",
-        config = function()
-            require("wrapping").setup()
-        end,
-    })
+
 use('junegunn/goyo.vim')
-use('jesseduffield/lazygit.nvim')
+use { "vlelo/arduino-helper.nvim" }
+use {
+  "toitware/ide-tools",
+  ft = { "toit" },
+  config = function(plugin)
+    if plugin.dir then
+      vim.opt.rtp:append(plugin.dir .. "/start/vim")
+    else
+      print("Error: plugin.dir is nil")
+    end
+  end,
+  init = function(plugin)
+    if plugin.dir then
+      require("lazy.core.loader").ftdetect(plugin.dir .. "/start/vim")
+    else
+      print("Error: plugin.dir is nil")
+    end
+  end,
+}
  end)
